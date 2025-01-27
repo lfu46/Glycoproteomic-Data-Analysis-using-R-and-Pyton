@@ -28,7 +28,7 @@ Desktop](https://posit.co/download/rstudio-desktop/).
 Click **DOWNLOAD RSTUDIO DESKTOP FOR WINDOWS**, or select the
 appropriate version from the list based on your operating system.
 
-![](Chapter1/Chapter1_figures/Chapter1_test/RStudio_download_window.png)
+![](Chapter1_figures/Chapter1_test/RStudio_download_window.png)
 ![](Chapter1/Chapter1_figures/Rstudio_download_other.png)
 
 ## Commonly Used Packages
@@ -39,14 +39,14 @@ The Tidyverse is **a collection of essential R packages** designed for
 data analysis, visualization, and manipulation. It provides a consistent
 and efficient workflow for working with data in R.
 
-![](Chapter1/Chapter1_figures/Tidyverse_package.png)
+![](Chapter1_figures/Tidyverse_package.png)
 
 ### [**readxl**](https://readxl.tidyverse.org/index.html)
 
 The readxl package is used to **import Excel files** (`.xls` and
 `.xlsx`) into R, allowing for easy data extraction and manipulation.
 
-![](Chapter1/Chapter1_figures/readxl_package.png)
+![](Chapter1_figures/readxl_package.png)
 
 ### [**writexl**](https://cran.r-project.org/web/packages/writexl/index.html)
 
@@ -60,7 +60,7 @@ The showtext package is used to **adjust and customize fonts** in R
 plots. It allows you to use various fonts, including system and web
 fonts, to enhance the appearance of text in your figures.
 
-![](Chapter1/Chapter1_figures/showtext_package.png)
+![](Chapter1_figures/showtext_package.png)
 
 ### [**rstatix**](https://rpkgs.datanovia.com/rstatix/)
 
@@ -70,7 +70,7 @@ hypothesis testing, data summarization, and statistical analysis, making
 it easier to conduct common tests like t-tests, ANOVA, and correlation
 analyses.
 
-![](Chapter1/Chapter1_figures/rstatix_package.png)
+![](Chapter1_figures/rstatix_package.png)
 
 ### [**ggpubr**](https://rpkgs.datanovia.com/ggpubr/)
 
@@ -79,7 +79,7 @@ The ggpubr package is designed for creating publication-ready
 for adding statistical annotations, customizing plot themes, and
 improving the presentation of data visualizations.
 
-![](Chapter1/Chapter1_figures/ggpubr_package.png)
+![](Chapter1_figures/ggpubr_package.png)
 
 ### [**ComplexHeatmap**](https://jokergoo.github.io/ComplexHeatmap-reference/book/)
 
@@ -88,7 +88,7 @@ heatmaps** in R, as well as other high-level visualizations. It provides
 advanced features for customizing heatmaps and integrating multiple data
 layers, making it a powerful tool for visualizing complex datasets.
 
-![](Chapter1/Chapter1_figures/ComplexHeatmap_package.png)
+![](Chapter1_figures/ComplexHeatmap_package.png)
 
 ## Learning Resources
 
@@ -133,7 +133,7 @@ and explore all [Posit
 Cheatsheets](https://posit.co/resources/cheatsheets/) for quick
 references and tips.
 
-![](Chapter1/Chapter1_figures/Posit_Cheatsheets.png)
+![](Chapter1_figures/Posit_Cheatsheets.png)
 
 For example, you can refer to the **ggplot2 cheatsheet**, which provides
 a quick reference for creating various types of plots using the ggplot2
@@ -150,7 +150,7 @@ learning R in a short amount of time. While it may provide quick
 insights, it is generally not recommended as a primary learning resource
 due to its focus on speed over in-depth understanding.
 
-![](Chapter1/Chapter1_figures/REDNote_example.png)
+![](Chapter1_figures/REDNote_example.png)
 
 ## Two Examples Demonstrating the Use of Package Functions in Proteomic Data Analysis
 
