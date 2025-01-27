@@ -175,7 +175,7 @@ sub-cellular compartments.
 
 You can get access **training data 1** for this example using the
 following link: [training data
-1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-Tutorial-using-R-and-Python/blob/main/training_data_1.xlsx)
+1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-using-R-and-Pyton/blob/main/Chapter1/training_data_1.xlsx)
 
 Here is how you would read in the data and take a quick look at it:
 

@@ -114,7 +114,7 @@ In proteomics, the K-S test is often used to compare the physicochemical propert
 
 For instance, in an experiment involving newly synthesized proteins, we may want to investigate the effect of inhibitors (such as Btz and 3MA) on the abundance of newly synthesized proteins across different sub-cellular compartments.
 
-You can get access **training data 1** for this example using the following link: [training data 1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-Tutorial-using-R-and-Python/blob/main/training_data_1.xlsx)
+You can get access **training data 1** for this example using the following link: [training data 1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-using-R-and-Pyton/blob/main/Chapter1/training_data_1.xlsx)
 
 Here is how you would read in the data and take a quick look at it:
 
