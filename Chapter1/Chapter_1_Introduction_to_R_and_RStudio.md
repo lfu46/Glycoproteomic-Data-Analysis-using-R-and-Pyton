@@ -9,13 +9,13 @@ Network](https://cran.r-project.org/).
 Be sure to select the appropriate download link for your operating
 system.
 
-![](Chapter1/Chapter1_figures/CRAN_R_download.png)
+![](Chapter1_figures/CRAN_R_download.png)
 
 If you are using Windows, click **Download R for Windows**, then select
 **base** or **install R for the first time** to proceed with the
 installation.
 
-![](Chapter1/Chapter1_figures/CRAN_R_window_download.png)
+![](Chapter1_figures/CRAN_R_window_download.png)
 
 Finally, click **Download** to start the installation.
 ![](Chapter1_test/CRAN_R_window_download_2.png)
@@ -140,8 +140,8 @@ a quick reference for creating various types of plots using the ggplot2
 package in R. This cheat sheet covers essential functions, customization
 options, and common plot types.
 
-![](Chapter1/Chapter1_figures/ggplot_cheatsheet_Page_1.png)
-![](Chapter1/Chapter1_figures/ggplot_cheatsheet_Page_2.png)
+![](Chapter1_figures/ggplot_cheatsheet_Page_1.png)
+![](Chapter1_figures/ggplot_cheatsheet_Page_2.png)
 
 ### 3. REDNote (or Other Social Media Platforms like YouTube or Bilibili)
 
