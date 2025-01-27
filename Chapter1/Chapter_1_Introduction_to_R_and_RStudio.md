@@ -9,7 +9,7 @@ Network](https://cran.r-project.org/).
 Be sure to select the appropriate download link for your operating
 system.
 
-![](/Users/longpingfu/Downloads/Chapter1_test/CRAN_R_download.png)
+![](Chapter1_figures/CRAN_R_download.png)
 
 If you are using Windows, click **Download R for Windows**, then select
 **base** or **install R for the first time** to proceed with the
