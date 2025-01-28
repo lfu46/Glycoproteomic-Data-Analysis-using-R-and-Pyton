@@ -218,7 +218,7 @@ lapply(packages_names, require, character.only = TRUE)
 ``` r
 #load training data 1
 training_data_1 <- read_xlsx(
-  '~/Downloads/Chapter1/training_data_1.xlsx'
+  'training_data_1.xlsx'
 )
 
 #have a quick look at the data
