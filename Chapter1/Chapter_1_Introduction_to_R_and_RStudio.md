@@ -18,7 +18,7 @@ installation.
 ![](Chapter1_figures/CRAN_R_window_download.png)
 
 Finally, click **Download** to start the installation.
-![](Chapter1_test/CRAN_R_window_download_2.png)
+![](Chapter1_figures/CRAN_R_window_download_2.png)
 
 ## Installing RStudio
 
@@ -28,8 +28,8 @@ Desktop](https://posit.co/download/rstudio-desktop/).
 Click **DOWNLOAD RSTUDIO DESKTOP FOR WINDOWS**, or select the
 appropriate version from the list based on your operating system.
 
-![](Chapter1_figures/Chapter1_test/RStudio_download_window.png)
-![](Chapter1/Chapter1_figures/Rstudio_download_other.png)
+![](Chapter1_figures/RStudio_download_window.png)
+![](Chapter1_figures/Rstudio_download_other.png)
 
 ## Commonly Used Packages
 
