@@ -1,0 +1,102 @@
+---
+title: "Enrichment Analysis"
+author: "Longping Fu"
+date: "03/05/2025"
+output: github_document
+---
+
+```{r GSEA with GO and KEGG for Iron experiment, echo = TRUE}
+library(tidyverse)
+library(clusterProfiler)
+library(org.Hs.eg.db)
+
+# import differential analysis result
+Iron_protein_toptable_tb <- read_csv(
+  'training_data/Iron_protein_toptable_tb.csv'
+)
+
+# generate ranked gene list
+genelist <- Iron_protein_toptable_tb$logFC
+names(genelist) <- Iron_protein_toptable_tb$UniProt_Accession
+genelist <- sort(genelist, decreasing = TRUE)
+
+# GSEA for GO
+Iron_GO_GSEA <- gseGO(
+  geneList = genelist,
+  ont = 'ALL',
+  OrgDb = org.Hs.eg.db,
+  keyType = 'UNIPROT',
+  pvalueCutoff = 1
+)
+
+# check GSEA GO result
+Iron_GO_GSEA@result |> 
+  as_tibble() |> 
+  arrange(p.adjust)
+
+# GSEA for KEGG
+Iron_KEGG_GSEA <- gseKEGG(
+  geneList = genelist,
+  organism = 'hsa',
+  keyType = 'uniprot',
+  pvalueCutoff = 1
+)
+
+# check GSEA KEGG result
+Iron_KEGG_GSEA@result |> 
+  as_tibble() |> 
+  arrange(p.adjust)
+```
+
+```{r GSEA with CORUM and Pfam for Iron experiment}
+# download CORUM database
+# https://mips.helmholtz-muenchen.de/corum/download
+# UniProt-CORUM Mapping, Corum 5.1 release (2025-01-21)
+corum_human <- read_delim(
+  'training_data/corum_uniprotCorumMapping.txt',
+  col_names = TRUE,
+  name_repair = 'universal'
+) |> 
+  mutate(
+    corum_id = paste('corum_id', corum_id, sep = '_')
+  ) |> 
+  dplyr::select(corum_id, UniProtKB_accession_number)
+
+colnames(corum_human) <- c('TERM', 'GENE')
+
+# download Pfam database
+# https://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam37.0/proteomes/
+# 9606.tsv.gz, 2024-05-28 13:25	2.8M
+pfam_human <- read_tsv(
+  'training_data/9606.tsv',
+  skip = 3,
+  col_names = FALSE
+) |> 
+  dplyr::select(X6, X1)
+
+colnames(pfam_human) <- c('TERM', 'GENE')
+
+# GSEA for protein complex
+Iron_CORUM_GSEA <- GSEA(
+  geneList = genelist,
+  pvalueCutoff = 1,
+  TERM2GENE = corum_human
+)
+
+# check GSEA CORUM result
+Iron_CORUM_GSEA@result |> 
+  as_tibble() |> 
+  arrange(p.adjust)
+
+# GSEA for protein domain
+Iron_Pfam_GSEA <- GSEA(
+  geneList = genelist,
+  pvalueCutoff = 1,
+  TERM2GENE = pfam_human
+)
+
+# check GSEA Pfam result
+Iron_Pfam_GSEA@result |> 
+  as_tibble() |> 
+  arrange(p.adjust)
+```
