@@ -280,7 +280,8 @@ protein_quantification_raw_sl_tmm |>
       x = Exp,
       y = log2_intensity
     )
-  ) |> 
+  ) +
+  labs(x = '', y = 'log2 intensity') +
   theme(
     axis.text.x = element_text(angle = 30, hjust = 1)
   )
