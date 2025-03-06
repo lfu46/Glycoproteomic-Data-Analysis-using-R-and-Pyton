@@ -132,6 +132,11 @@ colnames(protein_tmm) <- c(
   'Ctrl_7_sl_tmm', 'Ctrl_8_sl_tmm', 'Ctrl_9_sl_tmm'
 )
 protein_quantification_raw_sl_tmm <- bind_cols(protein_quantification_raw_sl, protein_tmm)
+
+write_csv(
+  protein_quantification_raw_sl_tmm,
+  file = 'training_data/protein_quantification_raw_sl_tmm.csv'
+)
 ```
 
 ```{r check intensity distribution, echo = TRUE}
