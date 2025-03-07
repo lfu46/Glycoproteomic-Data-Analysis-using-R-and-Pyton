@@ -1,5 +1,5 @@
 ---
-title: "Data Normalization"
+title: "Chapter 2: Data Normalization"
 author: "Longping Fu"
 date: "03/05/2025"
 output: github_document
@@ -158,4 +158,8 @@ protein_quantification_raw_sl_tmm |>
   theme(
     axis.text.x = element_text(angle = 30, hjust = 1)
   )
+```
+
+```{r session info}
+sessionInfo()
 ```

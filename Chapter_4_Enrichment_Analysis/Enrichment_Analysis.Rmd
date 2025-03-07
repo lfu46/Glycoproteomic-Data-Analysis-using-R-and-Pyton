@@ -1,5 +1,5 @@
 ---
-title: "Enrichment Analysis"
+title: "Chapter 4: Enrichment Analysis"
 author: "Longping Fu"
 date: "03/05/2025"
 output: github_document
@@ -16,6 +16,8 @@ Iron_protein_toptable_tb <- read_csv(
 )
 
 # generate ranked gene list
+# tutorial: https://yulab-smu.top/biomedical-knowledge-mining-book/faq.html
+# How to prepare your own geneList
 genelist <- Iron_protein_toptable_tb$logFC
 names(genelist) <- Iron_protein_toptable_tb$UniProt_Accession
 genelist <- sort(genelist, decreasing = TRUE)
@@ -23,8 +25,11 @@ genelist <- sort(genelist, decreasing = TRUE)
 # GSEA for GO
 Iron_GO_GSEA <- gseGO(
   geneList = genelist,
+  # 'ALL' for all 'BP', 'MF', and 'CC'
   ont = 'ALL',
   OrgDb = org.Hs.eg.db,
+  # check the manual for org.Hs.eg.db for all available identifiers
+  # https://bioconductor.org/packages/release/data/annotation/manuals/org.Hs.eg.db/man/org.Hs.eg.db.pdf
   keyType = 'UNIPROT',
   pvalueCutoff = 1
 )
@@ -37,7 +42,9 @@ Iron_GO_GSEA@result |>
 # GSEA for KEGG
 Iron_KEGG_GSEA <- gseKEGG(
   geneList = genelist,
+  # 'hsa' for Homo sapiens (human)
   organism = 'hsa',
+  # 'uniprot' for UniProt_Accession
   keyType = 'uniprot',
   pvalueCutoff = 1
 )
@@ -62,6 +69,8 @@ corum_human <- read_delim(
   ) |> 
   dplyr::select(corum_id, UniProtKB_accession_number)
 
+# one column for TREM, one column for GENE
+# for proteomic result, most of the time GENE refers to UniProt_Accession
 colnames(corum_human) <- c('TERM', 'GENE')
 
 # download Pfam database
@@ -74,12 +83,14 @@ pfam_human <- read_tsv(
 ) |> 
   dplyr::select(X6, X1)
 
+# one column for TREM, one column for GENE
 colnames(pfam_human) <- c('TERM', 'GENE')
 
 # GSEA for protein complex
 Iron_CORUM_GSEA <- GSEA(
   geneList = genelist,
   pvalueCutoff = 1,
+  # parameter TERM2GENE, one column for TREM, one column for GENE
   TERM2GENE = corum_human
 )
 
@@ -92,6 +103,7 @@ Iron_CORUM_GSEA@result |>
 Iron_Pfam_GSEA <- GSEA(
   geneList = genelist,
   pvalueCutoff = 1,
+  # parameter TERM2GENE, one column for TREM, one column for GENE
   TERM2GENE = pfam_human
 )
 
@@ -99,4 +111,8 @@ Iron_Pfam_GSEA <- GSEA(
 Iron_Pfam_GSEA@result |> 
   as_tibble() |> 
   arrange(p.adjust)
+```
+
+```{r session info}
+sessionInfo()
 ```

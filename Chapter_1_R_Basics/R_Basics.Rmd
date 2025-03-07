@@ -281,6 +281,6 @@ violin_boxplot_cytosol
 - How to reshape data from external sources (such as search engines or online tools) into a format suitable for statistical analysis and figure generation.
 - How to use `ggplot2` to create a violin boxplot, fine-tune the plot with specific functions, and save the final figure in EPS format for publication or further use.
 
-```{r}
+```{r session info}
 sessionInfo()
 ```

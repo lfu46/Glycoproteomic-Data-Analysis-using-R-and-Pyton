@@ -1,5 +1,5 @@
 ---
-title: "Differential Analysis"
+title: "Chapter 3: Differential Analysis"
 author: "Longping Fu"
 date: "03/05/2025"
 output: github_document
@@ -71,4 +71,8 @@ Iron_protein_toptable_tb |>
     )
   ) +
   labs(x = 'log2 fold change', y = '-log10 adj.P.value')
+```
+
+```{r session info}
+sessionInfo()
 ```

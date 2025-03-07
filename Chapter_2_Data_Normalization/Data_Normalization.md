@@ -1,4 +1,4 @@
-Data Normalization
+Chapter 2: Data Normalization
 ================
 Longping Fu
 03/05/2025
@@ -264,6 +264,11 @@ colnames(protein_tmm) <- c(
   'Ctrl_7_sl_tmm', 'Ctrl_8_sl_tmm', 'Ctrl_9_sl_tmm'
 )
 protein_quantification_raw_sl_tmm <- bind_cols(protein_quantification_raw_sl, protein_tmm)
+
+write_csv(
+  protein_quantification_raw_sl_tmm,
+  file = 'training_data/protein_quantification_raw_sl_tmm.csv'
+)
 ```
 
 ``` r
@@ -288,3 +293,42 @@ protein_quantification_raw_sl_tmm |>
 ```
 
 ![](Data_Normalization_files/figure-gfm/check%20intensity%20distribution-1.png)<!-- -->
+
+``` r
+sessionInfo()
+```
+
+    ## R version 4.4.0 (2024-04-24)
+    ## Platform: aarch64-apple-darwin20
+    ## Running under: macOS Sonoma 14.6.1
+    ## 
+    ## Matrix products: default
+    ## BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib 
+    ## LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0
+    ## 
+    ## locale:
+    ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+    ## 
+    ## time zone: America/New_York
+    ## tzcode source: internal
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## other attached packages:
+    ##  [1] edgeR_4.4.2     limma_3.62.2    lubridate_1.9.4 forcats_1.0.0  
+    ##  [5] stringr_1.5.1   dplyr_1.1.4     purrr_1.0.4     readr_2.1.5    
+    ##  [9] tidyr_1.3.1     tibble_3.2.1    ggplot2_3.5.1   tidyverse_2.0.0
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] generics_0.1.3    stringi_1.8.4     lattice_0.22-6    hms_1.1.3        
+    ##  [5] digest_0.6.37     magrittr_2.0.3    evaluate_1.0.3    grid_4.4.0       
+    ##  [9] timechange_0.3.0  fastmap_1.2.0     scales_1.3.0      cli_3.6.4        
+    ## [13] rlang_1.1.5       crayon_1.5.3      bit64_4.6.0-1     munsell_0.5.1    
+    ## [17] withr_3.0.2       yaml_2.3.10       tools_4.4.0       parallel_4.4.0   
+    ## [21] tzdb_0.4.0        colorspace_2.1-1  locfit_1.5-9.11   vctrs_0.6.5      
+    ## [25] R6_2.6.1          lifecycle_1.0.4   bit_4.5.0.1       vroom_1.6.5      
+    ## [29] pkgconfig_2.0.3   pillar_1.10.1     gtable_0.3.6      glue_1.8.0       
+    ## [33] statmod_1.5.0     xfun_0.50         tidyselect_1.2.1  rstudioapi_0.17.1
+    ## [37] knitr_1.49        farver_2.1.2      htmltools_0.5.8.1 rmarkdown_2.29   
+    ## [41] labeling_0.4.3    compiler_4.4.0
