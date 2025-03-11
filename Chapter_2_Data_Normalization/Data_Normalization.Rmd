@@ -160,6 +160,48 @@ protein_quantification_raw_sl_tmm |>
   )
 ```
 
+```{r UMAP, echo = TRUE}
+# import packages
+library(tidyverse)
+# for executing python script in R
+library(reticulate)
+
+# load normalized data
+protein_quantification_raw_sl_tmm_data <- read_csv(
+  'training_data/protein_quantification_raw_sl_tmm.csv'
+) |> 
+  select(UniProt_Accession, Iron_1_sl_tmm:Ctrl_9_sl_tmm) |> 
+  pivot_longer(cols = Iron_1_sl_tmm:Ctrl_9_sl_tmm, names_to = 'Treatment', values_to = 'Intensity') |> 
+  mutate(
+    Treatment = case_when(
+      str_detect(Treatment, 'Iron') ~ 'Iron',
+      str_detect(Treatment, 'Copper') ~ 'Copper',
+      str_detect(Treatment, 'Ctrl') ~ 'Ctrl'
+    ),
+    Exp = rep(c('Exp_1', 'Exp_2', 'Exp_3'), 21321)
+  ) |> 
+  pivot_wider(
+    names_from = Exp, values_from = Intensity
+  )
+
+write_csv(
+  protein_quantification_raw_sl_tmm_data,
+  file = 'training_data/protein_quantification_raw_sl_tmm_data.csv'
+)
+
+# use specific virtual env
+use_condaenv(
+  condaenv = '/opt/anaconda3/envs/UMAP_env',
+  required = TRUE
+)
+
+# execute the python script for UMAP_preparation
+source_python("UMAP.py")
+
+```
+
+![](training_data/umap_plot.png)
+
 ```{r session info}
 sessionInfo()
 ```

@@ -295,6 +295,62 @@ protein_quantification_raw_sl_tmm |>
 ![](Data_Normalization_files/figure-gfm/check%20intensity%20distribution-1.png)<!-- -->
 
 ``` r
+# import packages
+library(tidyverse)
+# for executing python script in R
+library(reticulate)
+```
+
+    ## Warning: package 'reticulate' was built under R version 4.4.1
+
+``` r
+# load normalized data
+protein_quantification_raw_sl_tmm_data <- read_csv(
+  'training_data/protein_quantification_raw_sl_tmm.csv'
+) |> 
+  select(UniProt_Accession, Iron_1_sl_tmm:Ctrl_9_sl_tmm) |> 
+  pivot_longer(cols = Iron_1_sl_tmm:Ctrl_9_sl_tmm, names_to = 'Treatment', values_to = 'Intensity') |> 
+  mutate(
+    Treatment = case_when(
+      str_detect(Treatment, 'Iron') ~ 'Iron',
+      str_detect(Treatment, 'Copper') ~ 'Copper',
+      str_detect(Treatment, 'Ctrl') ~ 'Ctrl'
+    ),
+    Exp = rep(c('Exp_1', 'Exp_2', 'Exp_3'), 21321)
+  ) |> 
+  pivot_wider(
+    names_from = Exp, values_from = Intensity
+  )
+```
+
+    ## Rows: 7107 Columns: 30
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr  (3): UniProt_Accession, Gene.Symbol, Annotation
+    ## dbl (27): Iron_1, Iron_2, Iron_3, Copper_4, Copper_5, Copper_6, Ctrl_7, Ctrl...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+``` r
+write_csv(
+  protein_quantification_raw_sl_tmm_data,
+  file = 'training_data/protein_quantification_raw_sl_tmm_data.csv'
+)
+
+# use specific virtual env
+use_condaenv(
+  condaenv = '/opt/anaconda3/envs/UMAP_env',
+  required = TRUE
+)
+
+# execute the python script for UMAP_preparation
+source_python("UMAP.py")
+```
+
+![](training_data/umap_plot.png)
+
+``` r
 sessionInfo()
 ```
 
@@ -316,19 +372,21 @@ sessionInfo()
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] edgeR_4.4.2     limma_3.62.2    lubridate_1.9.4 forcats_1.0.0  
-    ##  [5] stringr_1.5.1   dplyr_1.1.4     purrr_1.0.4     readr_2.1.5    
-    ##  [9] tidyr_1.3.1     tibble_3.2.1    ggplot2_3.5.1   tidyverse_2.0.0
+    ##  [1] reticulate_1.40.0 edgeR_4.4.2       limma_3.62.2      lubridate_1.9.4  
+    ##  [5] forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4       purrr_1.0.4      
+    ##  [9] readr_2.1.5       tidyr_1.3.1       tibble_3.2.1      ggplot2_3.5.1    
+    ## [13] tidyverse_2.0.0  
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] generics_0.1.3    stringi_1.8.4     lattice_0.22-6    hms_1.1.3        
     ##  [5] digest_0.6.37     magrittr_2.0.3    evaluate_1.0.3    grid_4.4.0       
-    ##  [9] timechange_0.3.0  fastmap_1.2.0     scales_1.3.0      cli_3.6.4        
-    ## [13] rlang_1.1.5       crayon_1.5.3      bit64_4.6.0-1     munsell_0.5.1    
-    ## [17] withr_3.0.2       yaml_2.3.10       tools_4.4.0       parallel_4.4.0   
-    ## [21] tzdb_0.4.0        colorspace_2.1-1  locfit_1.5-9.11   vctrs_0.6.5      
-    ## [25] R6_2.6.1          lifecycle_1.0.4   bit_4.5.0.1       vroom_1.6.5      
-    ## [29] pkgconfig_2.0.3   pillar_1.10.1     gtable_0.3.6      glue_1.8.0       
-    ## [33] statmod_1.5.0     xfun_0.50         tidyselect_1.2.1  rstudioapi_0.17.1
-    ## [37] knitr_1.49        farver_2.1.2      htmltools_0.5.8.1 rmarkdown_2.29   
-    ## [41] labeling_0.4.3    compiler_4.4.0
+    ##  [9] timechange_0.3.0  fastmap_1.2.0     jsonlite_1.8.9    Matrix_1.7-2     
+    ## [13] scales_1.3.0      cli_3.6.4         rlang_1.1.5       crayon_1.5.3     
+    ## [17] bit64_4.6.0-1     munsell_0.5.1     withr_3.0.2       yaml_2.3.10      
+    ## [21] tools_4.4.0       parallel_4.4.0    tzdb_0.4.0        colorspace_2.1-1 
+    ## [25] locfit_1.5-9.11   png_0.1-8         vctrs_0.6.5       R6_2.6.1         
+    ## [29] lifecycle_1.0.4   bit_4.5.0.1       vroom_1.6.5       pkgconfig_2.0.3  
+    ## [33] pillar_1.10.1     gtable_0.3.6      Rcpp_1.0.14       glue_1.8.0       
+    ## [37] statmod_1.5.0     xfun_0.50         tidyselect_1.2.1  rstudioapi_0.17.1
+    ## [41] knitr_1.49        farver_2.1.2      htmltools_0.5.8.1 rmarkdown_2.29   
+    ## [45] labeling_0.4.3    compiler_4.4.0
