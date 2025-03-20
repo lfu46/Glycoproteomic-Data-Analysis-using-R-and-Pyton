@@ -29,6 +29,27 @@ source_python("structure_analysis.py")
 ```
 
 ```{r, echo = TRUE}
-# check the result
+## check the result
+# peptide physicochemical property analysis
+HEK_Nterm_Kd_half_life_sequence |> 
+  as_tibble() |> 
+  head(10)
 
+# protein modification structure analysis
+common_Nterm_alphafold_N_terminus |>
+  as_tibble() |>
+  head(10)
+
+enrichment_N_terminus |>
+  as_tibble() |>
+  head(10)
+
+common_Nterm_proximity |>
+  as_tibble() |>
+  head(10)
+
+```
+
+```{r, echo = TRUE}
+sessionInfo()
 ```
