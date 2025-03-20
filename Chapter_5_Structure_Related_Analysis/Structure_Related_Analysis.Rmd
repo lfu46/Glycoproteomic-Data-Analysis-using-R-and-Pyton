@@ -33,15 +33,18 @@ source_python("structure_analysis.py")
 # peptide physicochemical property analysis
 HEK_Nterm_Kd_half_life_sequence |> 
   as_tibble() |> 
+  select(Nterm_13mer, hydropathy, isoelectric_point) |> 
   head(10)
 
 # protein modification structure analysis
 common_Nterm_alphafold_N_terminus |>
   as_tibble() |>
+  select(protein_id, AA, position, structure_group, nAA_24_180_pae, nAA_12_70_pae, high_acc_5, low_acc_5, IDR) |> 
   head(10)
 
 enrichment_N_terminus |>
   as_tibble() |>
+  select(ptm, roi, oddsr, p, p_adj_bf, p_adj_bh) |> 
   head(10)
 
 common_Nterm_proximity |>

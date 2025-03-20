@@ -60,74 +60,64 @@ source_python("structure_analysis.py")
 # peptide physicochemical property analysis
 HEK_Nterm_Kd_half_life_sequence |> 
   as_tibble() |> 
+  select(Nterm_13mer, hydropathy, isoelectric_point) |> 
   head(10)
 ```
 
-    ## # A tibble: 10 × 18
-    ##    Index       UniProt_Accession Protein.Start Gene   Entry.Name    Kd half_life
-    ##    <chr>       <chr>                     <dbl> <chr>  <chr>      <dbl>     <dbl>
-    ##  1 P49368_121  P49368                      121 CCT3   TCPG_HUMAN  2.36     0.298
-    ##  2 Q14157_778  Q14157                      778 UBAP2L UBP2L_HUM…  2.15     0.328
-    ##  3 Q15154_1067 Q15154                     1067 PCM1   PCM1_HUMAN  2.09     0.339
-    ##  4 Q15393_740  Q15393                      740 SF3B3  SF3B3_HUM…  1.96     0.360
-    ##  5 O75436_252  O75436                      252 VPS26A VP26A_HUM…  1.94     0.365
-    ##  6 Q08211_820  Q08211                      820 DHX9   DHX9_HUMAN  1.94     0.366
-    ##  7 Q9UN37_307  Q9UN37                      307 VPS4A  VPS4A_HUM…  1.86     0.381
-    ##  8 P50402_185  P50402                      185 EMD    EMD_HUMAN   1.75     0.406
-    ##  9 Q99615_343  Q99615                      343 DNAJC7 DNJC7_HUM…  1.74     0.408
-    ## 10 Q13813_429  Q13813                      429 SPTAN1 SPTN1_HUM…  1.71     0.415
-    ## # ℹ 11 more variables: RSS <dbl>, Percentile <dbl>, category <chr>,
-    ## #   Sequence <chr>, Full_Protein_Length <dbl>, Nterm_sequence <chr>,
-    ## #   Nterm_13mer <chr>, Nterm_terminus <chr>,
-    ## #   Nterm_13mers_sequence_parameter <list>, hydropathy <dbl>,
-    ## #   isoelectric_point <dbl>
+    ## # A tibble: 10 × 3
+    ##    Nterm_13mer   hydropathy isoelectric_point
+    ##    <chr>              <dbl>             <dbl>
+    ##  1 VVISAYRKALDDM       4.86              7   
+    ##  2 SSVATTSGKAPPN       3.96             12.2 
+    ##  3 WQQNNVQRLKQML       3.22             13.9 
+    ##  4 EFASGFASEQCPE       4.05              1.75
+    ##  5 LAGYDPTPTMRDV       4.03              3.94
+    ##  6 AIEPPPLDAVIEA       5.05              1.75
+    ##  7 LGSTPHNLTDANI       4.19              5.25
+    ##  8 SSSTSFMSSSSSS       4.19              7   
+    ##  9 QYEEAVRDYEKVY       2.99              4.05
+    ## 10 AAGHYASDEVREK       3.35              5.25
 
 ``` r
 # protein modification structure analysis
 common_Nterm_alphafold_N_terminus |>
   as_tibble() |>
+  select(protein_id, AA, position, structure_group, nAA_24_180_pae, nAA_12_70_pae, high_acc_5, low_acc_5, IDR) |> 
   head(10)
 ```
 
-    ## # A tibble: 10 × 33
-    ##    protein_id protein_number AA    position quality x_coord_c x_coord_ca
-    ##    <chr>               <dbl> <chr>    <dbl>   <dbl>     <dbl>      <dbl>
-    ##  1 E9PAV3                  1 M            1    43.7      32.1       31.5
-    ##  2 E9PAV3                  1 P            2    36.9      32.6       31.8
-    ##  3 E9PAV3                  1 G            3    37.2      31.5       32.7
-    ##  4 E9PAV3                  1 E            4    38.0      32.2       31.8
-    ##  5 E9PAV3                  1 A            5    42.9      31.0       31.4
-    ##  6 E9PAV3                  1 T            6    41.5      28.7       30.2
-    ##  7 E9PAV3                  1 E            7    43.5      27.9       28.8
-    ##  8 E9PAV3                  1 T            8    44.0      27.5       27.5
-    ##  9 E9PAV3                  1 V            9    39.2      26.7       26.3
-    ## 10 E9PAV3                  1 P           10    41.3      27.2       28.1
-    ## # ℹ 26 more variables: x_coord_cb <dbl>, x_coord_n <dbl>, y_coord_c <dbl>,
-    ## #   y_coord_ca <dbl>, y_coord_cb <dbl>, y_coord_n <dbl>, z_coord_c <dbl>,
-    ## #   z_coord_ca <dbl>, z_coord_cb <dbl>, z_coord_n <dbl>,
-    ## #   secondary_structure <chr>, structure_group <chr>, BEND <dbl>, HELX <dbl>,
-    ## #   STRN <dbl>, TURN <dbl>, unstructured <dbl>, nAA_24_180_pae <dbl>,
-    ## #   nAA_12_70_pae <dbl>, high_acc_5 <dbl>, low_acc_5 <dbl>,
-    ## #   nAA_24_180_pae_smooth10 <dbl>, IDR <dbl>, common_Nterm <dbl>, …
+    ## # A tibble: 10 × 9
+    ##    protein_id AA    position structure_group nAA_24_180_pae nAA_12_70_pae
+    ##    <chr>      <chr>    <dbl> <chr>                    <dbl>         <dbl>
+    ##  1 E9PAV3     M            1 unstructured                 5             0
+    ##  2 E9PAV3     P            2 unstructured                 6             0
+    ##  3 E9PAV3     G            3 unstructured                 7             0
+    ##  4 E9PAV3     E            4 unstructured                 8             0
+    ##  5 E9PAV3     A            5 unstructured                 9             0
+    ##  6 E9PAV3     T            6 unstructured                10             0
+    ##  7 E9PAV3     E            7 unstructured                10             0
+    ##  8 E9PAV3     T            8 unstructured                10             0
+    ##  9 E9PAV3     V            9 unstructured                10             0
+    ## 10 E9PAV3     P           10 unstructured                10             0
+    ## # ℹ 3 more variables: high_acc_5 <dbl>, low_acc_5 <dbl>, IDR <dbl>
 
 ``` r
 enrichment_N_terminus |>
   as_tibble() |>
+  select(ptm, roi, oddsr, p, p_adj_bf, p_adj_bh) |> 
   head(10)
 ```
 
-    ## # A tibble: 7 × 13
-    ##   quality_cutoff ptm       roi   n_aa_ptm n_aa_roi n_ptm_in_roi n_ptm_not_in_roi
-    ##            <dbl> <chr>     <chr>    <dbl>    <dbl>        <dbl>            <dbl>
-    ## 1              0 common_N… BEND      2869    23359          140             2729
-    ## 2              0 common_N… HELX      2869   144289         1070             1799
-    ## 3              0 common_N… STRN      2869    51865          436             2433
-    ## 4              0 common_N… TURN      2869    32157          217             2652
-    ## 5              0 common_N… IDR       2869   151391         1188             1681
-    ## 6              0 common_N… high…     2869   298954         2238              631
-    ## 7              0 common_N… low_…     2869    87472          631             2238
-    ## # ℹ 6 more variables: n_naked_in_roi <dbl>, n_naked_not_in_roi <dbl>,
-    ## #   oddsr <dbl>, p <dbl>, p_adj_bf <dbl>, p_adj_bh <dbl>
+    ## # A tibble: 7 × 6
+    ##   ptm          roi        oddsr       p p_adj_bf p_adj_bh
+    ##   <chr>        <chr>      <dbl>   <dbl>    <dbl>    <dbl>
+    ## 1 common_Nterm BEND       0.796 0.00749   0.0524   0.0262
+    ## 2 common_Nterm HELX       0.998 0.969     1        0.969 
+    ## 3 common_Nterm STRN       1.16  0.00596   0.0417   0.0262
+    ## 4 common_Nterm TURN       0.901 0.145     1        0.253 
+    ## 5 common_Nterm IDR        1.10  0.0148    0.103    0.0345
+    ## 6 common_Nterm high_acc_5 1.04  0.420     1        0.490 
+    ## 7 common_Nterm low_acc_5  0.963 0.420     1        0.490
 
 ``` r
 common_Nterm_proximity |>
