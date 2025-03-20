@@ -1,0 +1,34 @@
+---
+title: "Chapter 5: Structure Related Analysis"
+author: "Longping Fu"
+date: "03/20/2025"
+output: github_document
+---
+
+To perform structure-related analysis of peptide sequences and post-translational modifications, you first need to install two Python packages: [localCIDER](https://pappulab.github.io/localCIDER/) and [StructureMap](https://github.com/MannLabs/structuremap). Please refer to their documentation for installation instructions and usage details.  
+
+Additionally, you can use [Anaconda](https://docs.anaconda.com/anaconda/install/) to set up a virtual environment for managing dependencies efficiently.  
+
+```{r, echo = TRUE}
+# import packages
+library(tidyverse)
+library(reticulate)
+
+# use specific virtual environment you just created
+use_condaenv(
+  condaenv = '/opt/anaconda3/envs/structure_analysis',
+  required = TRUE
+)
+
+```
+
+```{r, echo = TRUE}
+# execute the python script for structure analysis
+source_python("structure_analysis.py")
+
+```
+
+```{r, echo = TRUE}
+# check the result
+
+```
