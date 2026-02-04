@@ -56,31 +56,46 @@ Iron_KEGG_GSEA@result |>
 ```
 
 ```{r GSEA with CORUM and Pfam for Iron experiment}
-# download CORUM database
-# https://mips.helmholtz-muenchen.de/corum/download
+## Database Download Instructions
+## ==============================
+## This section requires two external databases: CORUM and Pfam.
+## Follow these steps to download them before running this code:
+##
+## CORUM Database (Protein Complexes):
+## 1. Visit: https://mips.helmholtz-muenchen.de/corum/download
+## 2. Download "UniProt-CORUM Mapping" (corum_uniprotCorumMapping.txt)
+## 3. Place in the training_data/ folder
+##
+## Pfam Database (Protein Domains):
+## 1. Visit: https://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam37.0/proteomes/
+## 2. Download "9606.tsv.gz" (human proteome, ~2.8MB compressed)
+## 3. Decompress and place the 9606.tsv file in the training_data/ folder
+
+# CORUM database - protein complex annotations
+# Source: https://mips.helmholtz-muenchen.de/corum/download
 # UniProt-CORUM Mapping, Corum 5.1 release (2025-01-21)
 corum_human <- read_delim(
   'training_data/corum_uniprotCorumMapping.txt',
   col_names = TRUE,
   name_repair = 'universal'
-) |> 
+) |>
   mutate(
     corum_id = paste('corum_id', corum_id, sep = '_')
-  ) |> 
+  ) |>
   dplyr::select(corum_id, UniProtKB_accession_number)
 
-# one column for TREM, one column for GENE
+# one column for TERM, one column for GENE
 # for proteomic result, most of the time GENE refers to UniProt_Accession
 colnames(corum_human) <- c('TERM', 'GENE')
 
-# download Pfam database
-# https://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam37.0/proteomes/
-# 9606.tsv.gz, 2024-05-28 13:25	2.8M
+# Pfam database - protein domain annotations
+# Source: https://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam37.0/proteomes/
+# 9606.tsv.gz (human proteome), 2024-05-28
 pfam_human <- read_tsv(
   'training_data/9606.tsv',
   skip = 3,
   col_names = FALSE
-) |> 
+) |>
   dplyr::select(X6, X1)
 
 # one column for TREM, one column for GENE

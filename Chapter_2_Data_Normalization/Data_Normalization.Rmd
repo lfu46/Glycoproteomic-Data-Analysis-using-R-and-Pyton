@@ -169,9 +169,9 @@ library(reticulate)
 # load normalized data
 protein_quantification_raw_sl_tmm_data <- read_csv(
   'training_data/protein_quantification_raw_sl_tmm.csv'
-) |> 
-  select(UniProt_Accession, Iron_1_sl_tmm:Ctrl_9_sl_tmm) |> 
-  pivot_longer(cols = Iron_1_sl_tmm:Ctrl_9_sl_tmm, names_to = 'Treatment', values_to = 'Intensity') |> 
+) |>
+  select(UniProt_Accession, Iron_1_sl_tmm:Ctrl_9_sl_tmm) |>
+  pivot_longer(cols = Iron_1_sl_tmm:Ctrl_9_sl_tmm, names_to = 'Treatment', values_to = 'Intensity') |>
   mutate(
     Treatment = case_when(
       str_detect(Treatment, 'Iron') ~ 'Iron',
@@ -179,7 +179,7 @@ protein_quantification_raw_sl_tmm_data <- read_csv(
       str_detect(Treatment, 'Ctrl') ~ 'Ctrl'
     ),
     Exp = rep(c('Exp_1', 'Exp_2', 'Exp_3'), 21321)
-  ) |> 
+  ) |>
   pivot_wider(
     names_from = Exp, values_from = Intensity
   )
@@ -189,9 +189,18 @@ write_csv(
   file = 'training_data/protein_quantification_raw_sl_tmm_data.csv'
 )
 
-# use specific virtual env
+# Configure conda environment for UMAP visualization
+# Cross-platform setup instructions:
+# 1. Create a conda environment: conda create -n UMAP_env python=3.9
+# 2. Activate and install packages:
+#    conda activate UMAP_env
+#    pip install umap-learn pandas numpy matplotlib seaborn
+# 3. Update the path below to match your conda environment location:
+#    - macOS/Linux: typically ~/anaconda3/envs/UMAP_env or ~/miniconda3/envs/UMAP_env
+#    - Windows: typically C:/Users/USERNAME/anaconda3/envs/UMAP_env
+# You can find your conda envs path with: conda info --envs
 use_condaenv(
-  condaenv = '/opt/anaconda3/envs/UMAP_env',
+  condaenv = 'UMAP_env',  # Use environment name; reticulate will find it automatically
   required = TRUE
 )
 

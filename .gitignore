@@ -57,6 +57,10 @@ rsconnect/
 *.xlsx
 *.txt
 
+# Exception: Include sample data files for tutorial
+!**/sample_*.csv
+!**/training_data.csv
+
 #Ignore FASTA files
 *.fasta
 

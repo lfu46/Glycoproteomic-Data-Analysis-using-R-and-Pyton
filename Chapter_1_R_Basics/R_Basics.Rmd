@@ -116,7 +116,7 @@ In proteomics, the K-S test is often used to compare the physicochemical propert
 
 For instance, in an experiment involving newly synthesized proteins, we may want to investigate the effect of inhibitors (such as Btz and 3MA) on the abundance of newly synthesized proteins across different sub-cellular compartments.
 
-You can get access **training data 1** for this example using the following link: [training data 1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-using-R-and-Pyton/blob/main/Chapter1/training_data/training_data_1.xlsx)
+You can get access **training data 1** for this example using the following link: [training data 1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-using-R-and-Python/blob/main/Chapter_1_R_Basics/training_data/training_data.csv)
 
 Here is how you would read in the data and take a quick look at it:
 
@@ -225,8 +225,8 @@ lapply(packages_names, require, character.only = TRUE)
 # statistical test
 cytosol_wilcox_test <- training_data_adj |> 
   filter(GO_Term == 'cytosol [GO:0005829]') |> 
-  # The Wilcoxon test is performed to compare the Fold Change between different 
-  # experimental conditions (Exp) with Benianmini-Hochberg correction.
+  # The Wilcoxon test is performed to compare the Fold Change between different
+  # experimental conditions (Exp) with Benjamini-Hochberg correction.
   wilcox_test(Fold_Change ~ Exp, p.adjust.method = 'BH')
 
 # check
@@ -277,7 +277,7 @@ violin_boxplot_cytosol
 # )
 ```
 
-### What have we learn
+### What have we learned
 - How to reshape data from external sources (such as search engines or online tools) into a format suitable for statistical analysis and figure generation.
 - How to use `ggplot2` to create a violin boxplot, fine-tune the plot with specific functions, and save the final figure in EPS format for publication or further use.
 

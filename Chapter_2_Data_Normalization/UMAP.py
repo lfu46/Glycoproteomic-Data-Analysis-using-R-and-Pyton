@@ -10,13 +10,13 @@ protein_quantification_raw_sl_tmm_data = pd.read_csv(
   "training_data/protein_quantification_raw_sl_tmm_data.csv"
 )
 
-# traing reducer using data
+# training reducer using data
 reducer = umap.UMAP()
 
-normlized_data = protein_quantification_raw_sl_tmm_data.iloc[:, 2:].values
+normalized_data = protein_quantification_raw_sl_tmm_data.iloc[:, 2:].values
 
-embedding = reducer.fit_transform(normlized_data)
-normlized_data.shape
+embedding = reducer.fit_transform(normalized_data)
+normalized_data.shape
 embedding.shape
 
 # Map categorical values to numbers
