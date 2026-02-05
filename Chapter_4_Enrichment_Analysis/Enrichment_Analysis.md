@@ -315,7 +315,7 @@ corum_human <- read_delim(
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ``` r
-# one column for TREM, one column for GENE
+# one column for TERM, one column for GENE
 # for proteomic result, most of the time GENE refers to UniProt_Accession
 colnames(corum_human) <- c('TERM', 'GENE')
 
@@ -340,14 +340,14 @@ pfam_human <- read_tsv(
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 ``` r
-# one column for TREM, one column for GENE
+# one column for TERM, one column for GENE
 colnames(pfam_human) <- c('TERM', 'GENE')
 
 # GSEA for protein complex
 Iron_CORUM_GSEA <- GSEA(
   geneList = genelist,
   pvalueCutoff = 1,
-  # parameter TERM2GENE, one column for TREM, one column for GENE
+  # parameter TERM2GENE, one column for TERM, one column for GENE
   TERM2GENE = corum_human
 )
 ```
@@ -396,7 +396,7 @@ Iron_CORUM_GSEA@result |>
 Iron_Pfam_GSEA <- GSEA(
   geneList = genelist,
   pvalueCutoff = 1,
-  # parameter TERM2GENE, one column for TREM, one column for GENE
+  # parameter TERM2GENE, one column for TERM, one column for GENE
   TERM2GENE = pfam_human
 )
 ```

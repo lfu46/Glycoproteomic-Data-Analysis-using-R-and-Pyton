@@ -162,7 +162,7 @@ peptide_result_raw_no_decoy_contaminants <- peptide_result_raw |>
     UniProt_Accession, 
     Gene.Symbol, 
     Annotation, 
-    # rename the TMT channel base on your experimental design
+    # rename the TMT channel based on your experimental design
     Iron_1 = ..126.Sn, Iron_2 = ..127n.Sn, Iron_3 = ..127c.Sn,
     Copper_4 = ..128n.Sn, Copper_5 = ..128c.Sn, Copper_6 = ..129n.Sn,
     Ctrl_7 = ..129c.Sn, Ctrl_8 = ..130n.Sn, Ctrl_9 = ..130c.Sn, 

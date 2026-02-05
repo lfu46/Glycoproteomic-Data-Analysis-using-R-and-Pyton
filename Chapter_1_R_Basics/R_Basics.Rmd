@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Installing R
 
-You can download R from the: [The Comprehensive R Archive Network](https://cran.r-project.org/).
+You can download R from [The Comprehensive R Archive Network](https://cran.r-project.org/).
 
 Be sure to select the appropriate download link for your operating system. 
 
@@ -89,7 +89,7 @@ The ComplexHeatmap package is used to create both **simple and complex heatmaps*
 
 [**Advanced R, 2nd Edition**](https://adv-r.hadley.nz/)
 
->The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as help you to understand why R works the way it does.
+>The book is designed primarily for R users who want to improve their programming skills and understanding of the language. It should also be useful for programmers coming to R from other languages, as it will help you to understand why R works the way it does.
 
 ### 2. Cheatsheets
 
@@ -154,7 +154,7 @@ The adjusted data looks much better in a tidy way. Now we can define a function 
 
 ```{r function definition, echo = TRUE}
 ks_test_function <- function(df){
-  # get all possible combination of experimental conditions
+  # get all possible combinations of experimental conditions
   Exp_list <- unique(df$Exp)
   combs <- data.frame(combn(Exp_list, 2, simplify = TRUE))
   

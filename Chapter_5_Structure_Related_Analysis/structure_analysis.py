@@ -127,7 +127,7 @@ common_Nterm_alphafold_accessibility["low_acc_5"] = np.where(
   common_Nterm_alphafold_accessibility.nAA_12_70_pae > 5, 1, 0
 )
 
-# annotate instrisicly disorder region (IDR)
+# annotate intrinsically disordered region (IDR)
 common_Nterm_alphafold_accessibility_smooth = get_smooth_score(
   common_Nterm_alphafold_accessibility,
   np.array(['nAA_24_180_pae']),
@@ -175,7 +175,7 @@ Nterm_site_dict = {
   ]
 }
 
-# perform N-terminus enrichement analysis
+# perform N-terminus enrichment analysis
 enrichment_N_terminus = perform_enrichment_analysis(
   df = common_Nterm_alphafold_N_terminus,
   ptm_types = ["common_Nterm"],

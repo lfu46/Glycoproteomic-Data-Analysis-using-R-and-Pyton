@@ -5,7 +5,7 @@ Longping Fu
 
 ## Installing R
 
-You can download R from the: [The Comprehensive R Archive
+You can download R from [The Comprehensive R Archive
 Network](https://cran.r-project.org/).
 
 Be sure to select the appropriate download link for your operating
@@ -121,7 +121,7 @@ layers, making it a powerful tool for visualizing complex datasets.
 
 > The book is designed primarily for R users who want to improve their
 > programming skills and understanding of the language. It should also
-> be useful for programmers coming to R from other languages, as help
+> be useful for programmers coming to R from other languages, as it will help
 > you to understand why R works the way it does.
 
 ### 2. Cheatsheets
@@ -177,7 +177,7 @@ sub-cellular compartments.
 
 You can get access **training data 1** for this example using the
 following link: [training data
-1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-using-R-and-Pyton/blob/main/Chapter1/training_data/training_data_1.xlsx)
+1](https://github.com/lfu46/Glycoproteomic-Data-Analysis-using-R-and-Python/blob/main/Chapter1/training_data/training_data_1.xlsx)
 
 Here is how you would read in the data and take a quick look at it:
 
@@ -307,7 +307,7 @@ compare the fold changes across the three conditions (`Btz_DMSO`,
 
 ``` r
 ks_test_function <- function(df){
-  # get all possible combination of experimental conditions
+  # get all possible combinations of experimental conditions
   Exp_list <- unique(df$Exp)
   combs <- data.frame(combn(Exp_list, 2, simplify = TRUE))
   
@@ -589,7 +589,7 @@ violin_boxplot_cytosol
 # )
 ```
 
-### What have we learn
+### What have we learned
 
 - How to reshape data from external sources (such as search engines or
   online tools) into a format suitable for statistical analysis and
